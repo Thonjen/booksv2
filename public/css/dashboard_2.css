@@ -1,0 +1,129 @@
+
+.wrapper {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar .logo img {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .menu-content .menu-items {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .menu-items .item {
+    margin: 15px 0;
+  }
+  
+  .menu-items .item a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    font-size: 18px;
+  }
+  
+  .menu-items .item a:hover {
+    background-color: #34495e;
+  }
+  
+  .main-content {
+    margin-left: 250px;
+    padding: 40px;
+    width: 100%;
+    background-image: url('/img/background.jpg');
+    background-size: cover;
+    
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: calc(25% - 20px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .card p {
+    font-size: 28px;
+    font-weight: bold;
+    color: #3498db;
+  }
+  
+  .card i {
+    font-size: 3em;
+    color: #3498db;
+    margin-bottom: 15px;
+  }
+  
+  .logins-chart, .top-receipts {
+    margin-top: 40px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logins-chart h3, .top-receipts h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .top-receipts table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .top-receipts th, .top-receipts td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .top-receipts th {
+    background-color: #f8f8f8;
+  }
+  
+  .top-receipts tr:hover td {
+    background-color: #f2f2f2;
+  }

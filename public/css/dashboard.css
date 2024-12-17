@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    height: 100%;
+    width: 260px;
+    background: #081c2d;
+    padding: 15px;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 25px;
+    padding: 0 15px;
+    color: #fff;
+    text-align: center;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-content {
+    margin-top: 1px;
+}
+
+.menu-items {
+    list-style: none;
+}
+
+.item a {
+    padding: 16px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 12px;
+    font-weight: normal;
+    text-align: left; /* Ensure text is aligned left */
+}
+
+.item a:hover {
+    background-color: #00509e;
+    font-weight: bold;
+}
+
+/* Main content */
+.container {
+    margin-left: 270px;
+    padding: 20px;  /* Adjusted padding for a more balanced layout */
+    width: 100%;
+    max-width: 1200px;  /* Prevent the container from getting too wide */
+    margin-right: auto;
+}
+
+h1 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Dashboard Cards */
+.dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: calc(25% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 28px;
+    font-weight: bold;
+    color: #3498db;
+}
+
+.card i {
+    font-size: 3em;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+/* Logins chart and top books tables */
+.logins-chart,
+.top-receipts {
+    margin-top: 40px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logins-chart h3,
+.top-receipts h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.top-receipts table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.top-receipts th,
+.top-receipts td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-receipts th {
+    background-color: #f8f8f8;
+}
+
+.top-receipts tr:hover td {
+    background-color: #f2f2f2;
+}
+
+/* Logo */
+.logo img {
+    width: 220px;
+    height: auto;
+    margin-right: -9px;
+    margin-left: -3px;
+}
+
+/* Search Bar */
+.search-bar {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    left: 15px;
+    width: 20px;
+    height: 20px;
+}
+
+.search-bar input[type="text"] {
+    width: 80%;
+    padding: 10px 10px 10px 40px;
+    border: 0.5px solid #7a7a7a;
+    font-size: 16px;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: #000;
+    outline: none;
+}
