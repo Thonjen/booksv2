@@ -11,7 +11,6 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\BookRequestController;
 
-// Public routes
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -21,7 +20,6 @@ Route::get('/', function () {
     ]);
 });
 
-// Admin routes
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/student-list', [DashboardController::class, 'studentList'])->name('students.index');
     Route::post('/students', [DashboardController::class, 'storeStudent'])->name('students.store');
@@ -40,12 +38,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 
-// Shared routes (accessible by both admin and user)
 Route::middleware(['auth', 'role:admin,user'])->group(function () {
     Route::get('/student/home', [StudentController::class, 'index'])->name('student.home');
     Route::post('/student/reserve-book', [StudentController::class, 'reserveBook'])->name('student.reserve-book');
     Route::post('/student/request-book', [BookRequestController::class, 'store'])->name('book-requests.store');
-    // Profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/basic', [ProfileController::class, 'updateBasicProfile'])->name('profile.update.basic');

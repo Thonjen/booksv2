@@ -72,7 +72,7 @@
         <div class="p-4">
           <h6 class="text-lg font-semibold text-gray-800 truncate">{{ book.title }}</h6>
           <p class="text-sm text-gray-600 mt-2">{{ book.description }}</p>
-          <p class="text-sm text-gray-600 mt-1">By: {{ book.author }}</p>
+          <p class="text-sm text-gray-600 mt-1">Author: {{ book.author }}</p>
           <span 
             :class="{
               'text-green-600 font-medium': book.availability === 'Available',

@@ -14,7 +14,7 @@
             </div>
             <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2">
                 <i class="fas fa-book-reader text-4xl text-[#4e73df] mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Active Borrowings</h3>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Borrows</h3>
                 <p class="text-2xl font-bold text-[#3498db]">{{ stats.totalBorrowings }}</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2">
@@ -22,37 +22,14 @@
                 <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Returns</h3>
                 <p class="text-2xl font-bold text-[#3498db]">{{ stats.totalReturns }}</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                <i class="fas fa-user-check text-4xl text-[#4e73df] mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Logins Today</h3>
-                <p class="text-2xl font-bold text-[#3498db]">{{ stats.totalLoginsToday }}</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                <i class="fas fa-book-reader text-4xl text-[#4e73df] mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Active Borrowings</h3>
-                <p class="text-2xl font-bold text-[#3498db]">{{ stats.activeBorrowings }}</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                <i class="fas fa-bookmark text-4xl text-[#4e73df] mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Active Reservations</h3>
-                <p class="text-2xl font-bold text-[#3498db]">{{ stats.activeReservations }}</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                <i class="fas fa-clock text-4xl text-[#4e73df] mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Pending Requests</h3>
-                <p class="text-2xl font-bold text-[#3498db]">{{ stats.pendingRequests }}</p>
-            </div>
+       
+           
         </div>
 
-        <!-- Logins by Month -->
-        <div class="mt-8 bg-white p-6 rounded-lg shadow-lg">
-          <h3 class="text-xl font-bold text-gray-800 mb-4">Total Logins by Month</h3>
-          <canvas ref="chartCanvas"></canvas>
-        </div>
-
+      
         <!-- Top 5 Most Received Books -->
         <div class="mt-8 bg-white p-6 rounded-lg shadow-lg">
-          <h3 class="text-xl font-bold text-gray-800 mb-4">Top 5 Most Received Books</h3>
+          <h3 class="text-xl font-bold text-gray-800 mb-4">Top 5 Most Borrowed Books</h3>
           <table class="w-full border-collapse">
             <thead>
               <tr>
