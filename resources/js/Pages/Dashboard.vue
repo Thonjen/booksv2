@@ -1,29 +1,31 @@
 <template>
   <Layout>
-    <div class="ml-64 p-8 flex-1 bg-cover bg-center" style="background-image: url('/img/background.jpg')">
-      <div class="max-w-7xl mx-auto">
-        <h1 class="text-3xl font-bold text-gray-800 mb-8">Dashboard</h1>
+    <div class="ml-64 min-h-screen p-0 flex-1 bg-gradient-to-br from-blue-50 to-blue-200">
+      <div class="max-w-7xl mx-auto py-10 px-4">
+      
 
-        <!-- Dashboard Cards -->
-        <!-- Update the stats cards section in Dashboard.vue -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                <i class="fas fa-book text-4xl text-[#4e73df] mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Books</h3>
-                <p class="text-2xl font-bold text-[#3498db]">{{ stats.totalBooks }}</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                <i class="fas fa-book-reader text-4xl text-[#4e73df] mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Borrows</h3>
-                <p class="text-2xl font-bold text-[#3498db]">{{ stats.totalBorrowings }}</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2">
-                <i class="fas fa-undo-alt text-4xl text-[#4e73df] mb-4"></i>
-                <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Returns</h3>
-                <p class="text-2xl font-bold text-[#3498db]">{{ stats.totalReturns }}</p>
-            </div>
-       
-           
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+          <div class="bg-gradient-to-br from-blue-200 to-blue-400 p-6 rounded-2xl shadow-lg flex flex-col items-center hover:scale-105 transition-transform">
+            <i class="fas fa-book text-4xl text-white mb-3"></i>
+            <h3 class="text-lg font-semibold text-white mb-1">Total Books</h3>
+            <p class="text-3xl font-extrabold text-white">{{ stats.totalBooks }}</p>
+          </div>
+          <div class="bg-gradient-to-br from-green-200 to-green-400 p-6 rounded-2xl shadow-lg flex flex-col items-center hover:scale-105 transition-transform">
+            <i class="fas fa-book-reader text-4xl text-white mb-3"></i>
+            <h3 class="text-lg font-semibold text-white mb-1">Total Borrows</h3>
+            <p class="text-3xl font-extrabold text-white">{{ stats.totalBorrowings }}</p>
+          </div>
+          <div class="bg-gradient-to-br from-yellow-200 to-yellow-400 p-6 rounded-2xl shadow-lg flex flex-col items-center hover:scale-105 transition-transform">
+            <i class="fas fa-undo-alt text-4xl text-white mb-3"></i>
+            <h3 class="text-lg font-semibold text-white mb-1">Total Returns</h3>
+            <p class="text-3xl font-extrabold text-white">{{ stats.totalReturns }}</p>
+          </div>
+          <div class="bg-gradient-to-br from-purple-200 to-purple-400 p-6 rounded-2xl shadow-lg flex flex-col items-center hover:scale-105 transition-transform">
+            <i class="fas fa-users text-4xl text-white mb-3"></i>
+            <h3 class="text-lg font-semibold text-white mb-1">Active Borrowings</h3>
+            <p class="text-3xl font-extrabold text-white">{{ stats.activeBorrowings }}</p>
+          </div>
         </div>
 
       

@@ -101,6 +101,7 @@ class BookController extends Controller
             'bookId' => 'required|string|unique:books',
             'publicationDate' => 'required|date',
             'description' => 'nullable|string',
+            'course' => 'nullable|string|max:255',
             'availability' => 'required|in:Available,Borrowed,Reserved',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -121,6 +122,7 @@ class BookController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
+            'course' => 'nullable|string|max:255',
             'availability' => 'required|in:Available,Borrowed,Reserved',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);

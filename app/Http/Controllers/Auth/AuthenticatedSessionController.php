@@ -20,37 +20,20 @@ class AuthenticatedSessionController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
-        try {
-            $credentials = $request->validate([
-                'email' => 'required|email',
-                'password' => 'required',
-            ]);
+        $request->authenticate();
 
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-                
-                $user = Auth::user();
-                $user->update(['last_login' => now()]);
-                
-                return response()->json([
-                    'success' => true,
-                    'role' => $user->role,
-                    'message' => 'Login successful'
-                ]);
-            }
+        $request->session()->regenerate();
 
-            return response()->json([
-                'success' => false,
-                'message' => 'Invalid credentials'
-            ], 401);
+        $user = Auth::user();
+        $user->update(['last_login' => now()]);
 
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'An error occurred during login.'
-            ], 500);
+        // Redirect based on user role
+        if ($user->role === 'admin') {
+            return redirect()->intended('/dashboard');
+        } else {
+            return redirect()->intended('/student/home');
         }
     }
 

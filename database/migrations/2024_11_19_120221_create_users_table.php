@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->enum('gender', ['Male', 'Female', 'Other']);
             $table->string('password');
             $table->enum('role', ['admin', 'user'])->default('user');
+            $table->timestamp('last_login')->nullable();
             $table->timestamps();
         });
     }

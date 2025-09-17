@@ -15,6 +15,7 @@ class Book extends Model
         'bookId',
         'publicationDate',
         'description',
+        'course',
         'image_path',
         'availability'
     ];

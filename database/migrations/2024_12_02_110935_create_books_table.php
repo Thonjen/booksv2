@@ -18,6 +18,7 @@ return new class extends Migration
         $table->string('bookId')->unique();
         $table->date('publicationDate');
         $table->text('description')->nullable();
+        $table->string('course')->nullable(); // Add course field
         $table->string('image_path')->nullable(); // Add this line
         $table->enum('availability', ['Available', 'Borrowed', 'Reserved'])->default('Available');
         $table->foreignId('added_by')->nullable()->constrained('admins')->onDelete('set null');

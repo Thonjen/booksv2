@@ -19,6 +19,7 @@ class StudentController extends Controller
                 'id' => $book->id,
                 'title' => $book->title,
                 'description' => $book->description,
+                'course' => $book->course,
                 'image_url' => $book->image_path ? Storage::url($book->image_path) : null,
                 'author' => $book->author,
                 'availability' => $book->availability

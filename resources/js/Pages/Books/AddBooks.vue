@@ -40,14 +40,22 @@
           </div>
 
           <div>
+            <label for="course" class="block text-sm font-medium mb-1">Course</label>
+            <input v-model="form.course" id="course" type="text" 
+              placeholder="e.g., Computer Science, Mathematics, Literature"
+              class="w-full border rounded-md p-2 text-sm focus:ring focus:ring-blue-200" />
+            <div v-if="form.errors.course" class="text-red-500 text-xs mt-1">{{ form.errors.course }}</div>
+          </div>
+
+          <div>
             <label for="image" class="block text-sm font-medium mb-1">Book Cover Image</label>
             <input 
-              type="file" 
-              id="image" 
-              @input="form.image = $event.target.files[0]"
-              accept="image/*"
-              class="w-full border rounded-md p-2 text-sm focus:ring focus:ring-blue-200" 
-            />
+  type="file" 
+  id="image" 
+  @change="previewImage"
+  accept="image/*"
+  class="w-full border rounded-md p-2 text-sm focus:ring focus:ring-blue-200" 
+/>
             <div v-if="form.errors.image" class="text-red-500 text-xs mt-1">{{ form.errors.image }}</div>
             
             <!-- Preview image -->
@@ -89,6 +97,7 @@ export default {
       bookId: '',
       publicationDate: '',
       description: '',
+      course: '',
       availability: 'Available',
       image: null
     });
@@ -104,12 +113,13 @@ export default {
         },
       });
     },
-    previewImage(event) {
-      const file = event.target.files[0];
-      if (file) {
-        this.imagePreview = URL.createObjectURL(file);
-      }
-    }
+   previewImage(event) {
+  const file = event.target.files[0];
+  if (file) {
+    this.form.image = file;
+    this.imagePreview = URL.createObjectURL(file);
+  }
+}
   }
 };
 </script>

@@ -8,7 +8,7 @@
           <input
             type="text"
             v-model="searchQuery"
-            placeholder="Search for a book..."
+            placeholder="Search by title, author, or course..."
             class="w-full p-3 bg-transparent text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
           />
         </div>
@@ -38,6 +38,7 @@
               <th class="px-4 py-2 text-left">Cover</th>
               <th class="px-4 py-2 text-left">Title</th>
               <th class="px-4 py-2 text-left">Author</th>
+              <th class="px-4 py-2 text-left">Course</th>
               <th class="px-4 py-2 text-left">Book ID</th>
               <th class="px-4 py-2 text-left">Availability</th>
               <th class="px-4 py-2 text-center">Actions</th>
@@ -59,6 +60,10 @@
               </td>
               <!-- Book Author -->
               <td class="px-4 py-2">{{ book.author }}</td>
+              <!-- Course -->
+              <td class="px-4 py-2">
+                <span class="text-gray-600">{{ book.course || 'N/A' }}</span>
+              </td>
               <!-- Book ID -->
               <td class="px-4 py-2">{{ book.bookId }}</td>
               <!-- Availability -->
@@ -252,6 +257,18 @@
               />
             </div>
 
+            <!-- Course -->
+            <div class="mb-4">
+              <label for="editCourse" class="block text-sm font-medium text-gray-600">Course:</label>
+              <input
+                type="text"
+                v-model="editBookData.course"
+                id="editCourse"
+                placeholder="e.g., Computer Science, Mathematics, Literature"
+                class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
             <!-- Availability -->
             <div class="mb-4">
               <label for="availabilitySelect" class="block text-sm font-medium text-gray-600">Availability:</label>
@@ -339,6 +356,7 @@ export default {
         id: null,
         title: '',
         author: '',
+        course: '',
         availability: 'Available',
         availabilityDate: '',
         image_url: null
@@ -360,7 +378,9 @@ export default {
   computed: {
     filteredBooks() {
       return this.books.filter(book => {
-        return book.title.toLowerCase().includes(this.searchQuery.toLowerCase());
+        return book.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+               book.author.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+               (book.course && book.course.toLowerCase().includes(this.searchQuery.toLowerCase()));
       });
     },
     borrowedBooks() {
@@ -435,6 +455,7 @@ export default {
         id: book.id,
         title: book.title,
         author: book.author,
+        course: book.course || '',
         availability: book.availability || 'Available',
         availabilityDate: book.availabilityDate || '',
         image_url: book.image_url, // Include the current image URL
@@ -446,6 +467,7 @@ export default {
       formData.append('_method', 'PUT'); // Method spoofing for PUT
       formData.append('title', this.editBookData.title);
       formData.append('author', this.editBookData.author);
+      formData.append('course', this.editBookData.course);
       formData.append('availability', this.editBookData.availability);
       
       if (this.editBookData.image_url instanceof File) {
@@ -473,6 +495,7 @@ export default {
         id: null,
         title: '',
         author: '',
+        course: '',
         availability: 'Available',
         availabilityDate: '',
         image_url: null

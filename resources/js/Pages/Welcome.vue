@@ -13,7 +13,7 @@
         <div style="text-align: center;">
           <h1>BOOK CLOUD</h1>
           <br>
-          <h4>MANAGE YOUR LIBRARY BOOKS</h4>
+          <h4>ENCHANCING LIBRARY ACCESS AND MANAGEMENT EFFICIENCY</h4>
         </div>
         <br>
       </div>

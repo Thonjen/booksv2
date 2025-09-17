@@ -32,7 +32,7 @@
           </span>
         </div>
         <p class="text-center text-sm text-gray-400">
-          Don’t have an account? 
+          Don't have an account? 
           <Link href="/register" class="text-teal-400 font-medium hover:underline">Register</Link>
         </p>
         <div>
@@ -44,13 +44,15 @@
           </button>
         </div>
         <p id="loginErrorMessage" class="text-center text-red-500 text-sm">{{ loginErrorMessage }}</p>
+        <!-- Debug info (remove in production) -->
+        <p v-if="debugInfo" class="text-center text-xs text-gray-500">{{ debugInfo }}</p>
       </form>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { router } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
 
 export default {
@@ -64,6 +66,7 @@ export default {
       loginErrorMessage: '',
       isLoading: false,
       passwordVisible: false,
+      debugInfo: '',
     };
   },
   methods: {
@@ -73,20 +76,35 @@ export default {
     async loginUser() {
       this.isLoading = true;
       this.loginErrorMessage = '';
-
-      const loginData = {
-        email: this.email,
-        password: this.password,
-      };
+      this.debugInfo = '';
 
       try {
-        const response = await axios.post('/api/login', loginData);
-        if (response.data.success) {
-          window.location.href = response.data.redirect;
-        }
+        // Use Inertia router instead of axios to handle CSRF tokens automatically
+        router.post('/login', {
+          email: this.email,
+          password: this.password,
+        }, {
+          onSuccess: (page) => {
+            this.debugInfo = 'Login successful! Redirecting...';
+            // Inertia will handle the redirect automatically
+          },
+          onError: (errors) => {
+            console.error('Login errors:', errors);
+            if (errors.email) {
+              this.loginErrorMessage = errors.email;
+            } else if (errors.password) {
+              this.loginErrorMessage = errors.password;
+            } else {
+              this.loginErrorMessage = 'Invalid credentials. Please try again.';
+            }
+          },
+          onFinish: () => {
+            this.isLoading = false;
+          }
+        });
       } catch (error) {
-        this.loginErrorMessage = 'Invalid credentials. Please try again.';
-      } finally {
+        console.error('Login error:', error);
+        this.loginErrorMessage = 'An error occurred during login. Please try again.';
         this.isLoading = false;
       }
     },

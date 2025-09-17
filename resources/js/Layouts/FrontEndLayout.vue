@@ -26,7 +26,7 @@
                             :class="{ 'bg-[#00509e]': $page.url === '/available-books' }"
                         >
                             <i class="fas fa-book w-5"></i>
-                            <span>Available Books</span>
+                            <span>Books Manager</span>
                         </Link>
                     </li>
                     <li>
@@ -46,7 +46,7 @@
                             :class="{ 'bg-[#00509e]': $page.url === '/student-list' }"
                         >
                             <i class="fas fa-user-graduate w-5"></i>
-                            <span>Student List</span>
+                            <span>User List</span>
                         </Link>
                     </li>
                 </ul>

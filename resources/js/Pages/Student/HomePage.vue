@@ -1,7 +1,9 @@
 <template>
+
     <!-- Header Section -->
     <header class="bg-[#081c2d] text-white py-3 px-6 shadow-sm mb-4 flex items-center justify-between">
       <!-- Logo Section -->
+
       <div class="flex items-center space-x-4">
         <img src="/img/logo2.png" alt="BOOK CLOUD Logo" class="max-w-[150px] h-auto" />
       </div>
@@ -11,8 +13,8 @@
         <input 
           type="text" 
           v-model="searchQuery" 
-          placeholder="Search for books..."
-          class="w-full p-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-200"
+          placeholder="Search by title, author, or course..."
+          class="w-full p-2 text-sm border border-gray-300 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-200"
         />
       </div>
 
@@ -55,6 +57,121 @@
       </div>
     </header>
 
+    <!-- Hamburger Button Below Navbar (Left Side) -->
+    <div class="flex items-center mb-4">
+      <button @click="toggleSidebar" class="ml-2 mt-2 p-2 rounded-full bg-[#081c2d] text-white shadow hover:bg-[#00509e] focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Sidebar -->
+    <transition name="slide">
+      <div v-if="showSidebar" class="fixed inset-0 z-50 flex">
+        <div class="bg-[#081c2d] w-64 h-full shadow-lg p-6 flex flex-col">
+          <div class="flex items-center justify-between mb-8">
+            <button @click="toggleSidebar" class="text-white focus:outline-none">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <nav class="flex flex-col space-y-4">
+
+            <div class="mb-4">
+              <span class="text-gray-300 uppercase text-xs tracking-wider">Notifications</span>
+              <button @click="openNotificationModal" class="flex items-center mt-2 text-white hover:text-blue-400 focus:outline-none">
+                <i class="fas fa-bell mr-2"></i> Notification
+              </button>
+            </div>
+            <div class="mb-4">
+              <span class="text-gray-300 uppercase text-xs tracking-wider">History</span>
+              <button @click="openTransactionModal" class="flex items-center mt-2 text-white hover:text-blue-400 focus:outline-none">
+                <i class="fas fa-history mr-2"></i> Transaction History
+              </button>
+            </div>
+            <div>
+              <span class="text-gray-300 uppercase text-xs tracking-wider">Books</span>
+              <button @click="openBorrowedModal" class="flex items-center mt-2 text-white hover:text-blue-400 focus:outline-none">
+                <i class="fas fa-book mr-2"></i> Borrowed/Reserve Book
+              </button>
+            </div>
+          </nav>
+        </div>
+        <div class="flex-1" @click="toggleSidebar"></div>
+      </div>
+    </transition>
+
+    <!-- Notification Modal -->
+    <div v-if="isNotificationModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" @click.self="closeNotificationModal">
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md animate-fade-in relative">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Notifications</h3>
+        <div class="text-gray-600">No notifications yet.</div>
+        <button @click="closeNotificationModal" class="absolute top-2 right-2 text-gray-400 hover:text-gray-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Transaction History Modal -->
+    <div v-if="isTransactionModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" @click.self="closeTransactionModal">
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md animate-fade-in relative">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Transaction History</h3>
+        <div class="text-gray-600">No transaction history yet.</div>
+        <button @click="closeTransactionModal" class="absolute top-2 right-2 text-gray-400 hover:text-gray-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Borrowed/Reserve Book Modal -->
+    <div v-if="isBorrowedModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" @click.self="closeBorrowedModal">
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md animate-fade-in relative">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Borrowed/Reserve Book</h3>
+        <div class="text-gray-600">No borrowed or reserved books yet.</div>
+        <button @click="closeBorrowedModal" class="absolute top-2 right-2 text-gray-400 hover:text-gray-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+
+
+  <!-- Notification Modal -->
+  <div v-if="isNotificationModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" @click.self="closeNotificationModal">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md animate-fade-in relative">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Notifications</h3>
+      <div class="text-gray-600">No notifications yet.</div>
+      <button @click="closeNotificationModal" class="absolute top-2 right-2 text-gray-400 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Transaction History Modal -->
+  <div v-if="isTransactionModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" @click.self="closeTransactionModal">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md animate-fade-in relative">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Transaction History</h3>
+      <div class="text-gray-600">No transaction history yet.</div>
+      <button @click="closeTransactionModal" class="absolute top-2 right-2 text-gray-400 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Borrowed/Reserve Book Modal -->
+  <div v-if="isBorrowedModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" @click.self="closeBorrowedModal">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md animate-fade-in relative">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Borrowed/Reserve Book</h3>
+      <div class="text-gray-600">No borrowed or reserved books yet.</div>
+      <button @click="closeBorrowedModal" class="absolute top-2 right-2 text-gray-400 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
     <!-- Book Cards -->
     <main class="container mx-auto p-10">
       <h1 class="text-2xl font-semibold mb-6">Available Books</h1>
@@ -72,6 +189,7 @@
         <div class="p-4">
           <h6 class="text-lg font-semibold text-gray-800 truncate">{{ book.title }}</h6>
           <p class="text-sm text-gray-600 mt-2">{{ book.description }}</p>
+          <p class="text-sm text-gray-600 mt-1">Course: {{ book.course || 'N/A' }}</p>
           <p class="text-sm text-gray-600 mt-1">Author: {{ book.author }}</p>
           <span 
             :class="{
@@ -138,7 +256,7 @@
             <button 
               type="button"
               @click="closeModal"
-              class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+              class="px-4 py-2 text-black-600 hover:bg-black-100 rounded-lg"
             >
               Cancel
             </button>
@@ -230,7 +348,11 @@
         searchQuery: '',
         isModalOpen: false,
         isProfileModalOpen: false,
+  isNotificationModalOpen: false, // Only open when user clicks notification
+        isTransactionModalOpen: false,
+        isBorrowedModalOpen: false,
         showDropdown: false,
+        showSidebar: false,
         selectedBook: null,
         requestType: '',
         startDate: '',
@@ -252,13 +374,38 @@
       filteredBooks() {
         return this.books.filter(book => 
           book.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
-          book.author.toLowerCase().includes(this.searchQuery.toLowerCase())
+          book.author.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          (book.course && book.course.toLowerCase().includes(this.searchQuery.toLowerCase()))
         );
       }
     },
     methods: {
       toggleDropdown() {
         this.showDropdown = !this.showDropdown;
+      },
+      toggleSidebar() {
+        this.showSidebar = !this.showSidebar;
+      },
+      openNotificationModal() {
+        this.isNotificationModalOpen = true;
+        this.showSidebar = false;
+      },
+      closeNotificationModal() {
+        this.isNotificationModalOpen = false;
+      },
+      openTransactionModal() {
+        this.isTransactionModalOpen = true;
+        this.showSidebar = false;
+      },
+      closeTransactionModal() {
+        this.isTransactionModalOpen = false;
+      },
+      openBorrowedModal() {
+        this.isBorrowedModalOpen = true;
+        this.showSidebar = false;
+      },
+      closeBorrowedModal() {
+        this.isBorrowedModalOpen = false;
       },
       openModal(book) {
         this.selectedBook = book;
@@ -336,3 +483,4 @@
     100% { opacity: 1; }
   }
 </style>
+
